@@ -14,12 +14,22 @@ const listsController = {
 
         res.render('index', { lists });
 
-    }
+    },
 
     // GET /app/create_list
+    create: (req, res) => {
+        res.render('createList');
+    },
 
     // POST /app/create_list
+    save: (req, res) => {
 
+        const { name } = req.body;
+        const newList = listsModel.createList(name);
+        listsModel.saveList(newList);
+        res.redirect('/app');
+
+    }
 
 
 };

@@ -19,6 +19,7 @@ const listsModel = {
             name: name
 
         }
+        return newList
     },
 
     saveList(list) {
