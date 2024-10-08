@@ -8,7 +8,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Configuracao da pasta public (arquivos estáticos)
+// Configuracao da pasta public
 app.use(express.static('public'));
 
 // Configuração de leitura dos dados da requisição
@@ -17,5 +17,5 @@ app.use(express.urlencoded( { extended: true }));
 // Configuração das rotas
 app.use(router);
 
-const PORT = process.env.PORT || 3000; // se PORT nao estiver especificada no servidor, entao usa 3000
+const PORT = process.env.PORT || 3000; 
 app.listen(PORT, () => console.log(`Server up at http://localhost:${PORT}/`));

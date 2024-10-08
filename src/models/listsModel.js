@@ -1,6 +1,6 @@
 const generateRandomID = require('../utils/randomID');
 
-let lists = [] // Armazenamento de todas as listas de tarefas
+let lists = [ { id: 'MFzTAE9hwU', name: 'Lista 1'}, { id: 'S2FRyjplVf', name: 'Lista 2'}] // Armazenamento de todas as listas de tarefas
 
 const listsModel = {
 
@@ -16,7 +16,7 @@ const listsModel = {
         const newList = {
 
             id: generateRandomID(10),
-            name: name,
+            name: name
 
         }
     },
