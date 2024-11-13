@@ -23,14 +23,21 @@ const listsController = {
 
     // POST /app/create_list
     save: (req, res) => {
-
         const { name } = req.body;
         const newList = listsModel.createList(name);
         listsModel.saveList(newList);
         res.redirect('/app');
+    },
 
+    // POST /app/delete_list/:id
+    delete: (req, res) => {
+        const id = req.params.id;
+
+        listsModel.deleteList(id);
+
+        res.redirect('/app');
     }
-
+ 
 
 };
 

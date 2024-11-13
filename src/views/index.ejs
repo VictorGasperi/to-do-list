@@ -12,22 +12,32 @@
     />
     <link rel="stylesheet" href="./assets/style.css">
   </head>
-  <body class="vh-100">
+  <body class="vh-100 d-flex flex-column">
     <%- include('partials/header') %>
 
-    <div class="mt-5 px-5">
+    <div class="mt-5 px-5 flex-grow-1">
       <div class="container-fluid">
         <h2>Listas de Tarefas</h2>
 
         <ul class="lists border rounded p-0">
+
+          <% if (lists.length === 0) {%>
+            <li class="d-flex justify-content-center align-items-center list-group-item border rounded p-3 m-3">
+              <span class="text-muted">Não existe nenhuma lista de tarefas!</span>
+            </li>
+          <% }  else { %>
+
+            
           <% lists.forEach(list => { %>
           <li class="d-flex justify-content-between align-items-center list-group-item border rounded p-3 m-3">
             <a class="btn fs-5" href="/app/<%= list.id %>"> <%= list.name %> </a>
-            <form action="/app/exclude/<%= list.id %>" method="post">
+            <form action="/app/delete_list/<%= list.id %>" method="post">
               <button class="btn btn-danger" type="submit">Excluir</button>
             </form>
           </li>
           <% }); %>
+
+          <% } %>
         </ul>
 
         <form action="/app/create_list" method="GET">
