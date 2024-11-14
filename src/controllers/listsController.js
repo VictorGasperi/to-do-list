@@ -1,4 +1,5 @@
 const listsModel = require('../models/listsModel');
+const tasksController = require('../controllers/tasksController');
 
 const listsController = {
 
@@ -17,12 +18,12 @@ const listsController = {
     },
 
     // GET /app/create_list
-    create: (req, res) => {
+    create_list: (req, res) => {
         res.render('createList');
     },
 
     // POST /app/create_list
-    save: (req, res) => {
+    save_list: (req, res) => {
         const { name } = req.body;
         const newList = listsModel.createList(name);
         listsModel.saveList(newList);
@@ -30,14 +31,13 @@ const listsController = {
     },
 
     // POST /app/delete_list/:id
-    delete: (req, res) => {
+    delete_list: (req, res) => {
         const id = req.params.id;
 
         listsModel.deleteList(id);
 
         res.redirect('/app');
     }
- 
 
 };
 

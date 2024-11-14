@@ -1,6 +1,6 @@
 const generateRandomID = require('../utils/randomID');
 
-let lists = [ { id: 'MFzTAE9hwU', name: 'Lista 1'}, { id: 'S2FRyjplVf', name: 'Lista 2'}] // Armazenamento de todas as listas de tarefas
+let lists = [ { id: 'MFzTAE9hwU', name: 'Lista 1', tasks: [ {id: 'MFwU', name: 'Tarefa 1 da lista 1', isCompleted: false} ]}, { id: 'S2FRyjplVf', name: 'Lista 2', tasks: [ {id: 'S2FR', name: 'Tarefa 1 da lista 2', isCompleted: false} ]}] // Armazenamento de todas as listas de tarefas
 
 const listsModel = {
 
@@ -16,7 +16,8 @@ const listsModel = {
         const newList = {
 
             id: generateRandomID(10),
-            name: name
+            name: name,
+            tasks: []
 
         }
         return newList
@@ -28,6 +29,14 @@ const listsModel = {
 
     deleteList(id) {
         lists = lists.filter(list => list.id !== id);
+    },
+
+    loadTask(id) {
+        
+        const list = this.getListById(id);
+
+        return list.tasks;
+
     }
 
 };
