@@ -9,10 +9,12 @@ const tasksController = {
 
         tasksModel.setAllTasks(id);
 
+        const listName = tasksModel.getListName();
         const tasksToDo = tasksModel.getAllToDoTasks();
         const tasksCompleted = tasksModel.getAllCompletedTasks();
 
-        res.render('list', { tasksToDo, tasksCompleted });
+
+        res.render('list', { listName, tasksToDo, tasksCompleted });
     
     }
 

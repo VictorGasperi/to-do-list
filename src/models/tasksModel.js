@@ -1,18 +1,24 @@
 const generateRandomID = require('../utils/randomID');
 const listsModel = require('../models/listsModel');
 
-let tasksToDo = []
-let tasksCompleted = []
+let listName;
+let tasksToDo = [];
+let tasksCompleted = [];
 
 const tasksModel = {
 
     setAllTasks(id) {
     
-        const tasks = listsModel.loadTask(id);
+        const list = listsModel.loadList(id);
 
-        tasksToDo = tasks.filter(task => task.isCompleted === false);
-        tasksCompleted = tasks.filter(task => task.isCompleted === true);
+        listName = list.name;
+        tasksToDo = list.tasks.filter(task => task.isCompleted === false);
+        tasksCompleted = list.tasks.filter(task => task.isCompleted === true);
         
+    },
+
+    getListName() {
+        return listName;
     },
 
     getAllToDoTasks() {

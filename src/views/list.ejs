@@ -10,34 +10,52 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/style.css" />
   </head>
-<body class="vh-100 d-flex flex-column">
-    
+  <body class="vh-100 d-flex flex-column">
     <%- include('partials/header') %>
 
 
-    <ul class="lists border rounded p-0">
+    <div class="mt-5 px-5 flex-grow-1">
+      <div class="container-fluid">
+        <h2 class="mt-5"> <%= listName %> </h2>
 
-      <% if (tasksToDo === 0 || tasksCompleted === 0) {%>
-        <li class="d-flex justify-content-center align-items-center list-group-item border rounded p-3 m-3">
-          <span class="text-muted">Não existe nenhuma tarefa!</span>
-        </li>
-      <% }  else { %>
-
-        
-      <% tasksToDo.forEach(task => { %>
-      <li class="d-flex justify-content-between align-items-center list-group-item border rounded p-3 m-3">
-        <a class="btn fs-5" href="/app/<%= task.id %>"> <%= task.name %> </a>
-        
-      </li>
-      <% }); %>
-
-      <% } %>
-    </ul>
-
+        <form class="input-group mb-3" action="/app/create_task" method="post">
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            placeholder="Nome da tarefa"
+            aria-label="Nome da tarefa"
+            aria-describedby="button-addon2"
+          />
+          <button
+            class="btn btn-outline-primary"
+            type="submit"
+            id="button-addon2"
+          >
+            Criar
+          </button>
+        </form>
+  
+        <ul class="lists border rounded p-0">
+          <% if (tasksToDo === 0 && tasksCompleted === 0) {%>
+          <li
+            class="d-flex justify-content-center align-items-center list-group-item border rounded p-3 m-3"
+          >
+            <span class="text-muted">Não existe nenhuma tarefa!</span>
+          </li>
+          <% } else { %> <% tasksToDo.forEach(task => { %>
+          <li
+            class="d-flex justify-content-between align-items-center list-group-item border rounded p-3 m-3"
+          >
+            <span class="btn fs-5"> <%= task.name %> </span>
+          </li>
+          <% }); %> <% } %>
+        </ul>
+      </div>
+    </div>
 
     <%- include('partials/footer') %>
-
-</body>
+  </body>
 </html>

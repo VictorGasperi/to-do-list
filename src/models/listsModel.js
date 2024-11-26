@@ -31,11 +31,14 @@ const listsModel = {
         lists = lists.filter(list => list.id !== id);
     },
 
-    loadTask(id) {
+    loadList(id) {
         
         const list = this.getListById(id);
 
-        return list.tasks;
+        return {
+            name: list.name,
+            tasks: list.tasks
+        }
 
     }
 
